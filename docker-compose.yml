@@ -1,0 +1,17 @@
+version: '3.5'
+services:
+  php:
+    build:
+      context: .
+      target: php-dev
+    volumes:
+      - .:/var/www/html
+  nginx:
+    image: nginx:stable
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./public/assets:/var/www/html/public/assets
+    ports:
+      - 80:80
+    depends_on:
+      - php

@@ -1,0 +1,12 @@
+{
+    "name": "tarnawski/docker",
+    "authors": [
+        {
+            "name": "Tomasz Tarnawski",
+            "email": "tarnawski27@gmail.com"
+        }
+    ],
+    "require": {
+        "ramsey/uuid": "^4.1"
+    }
+}
