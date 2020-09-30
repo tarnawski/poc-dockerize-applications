@@ -7,7 +7,6 @@ RUN composer install --no-suggest --no-interaction
 FROM php:7.4-fpm AS php-dev
 # Install XDebug etc
 WORKDIR /var/www/html
-COPY . /var/www/html
 COPY --from=composer-dev /app/vendor /var/www/html
 
 ################# PRODUCTION #########################
@@ -17,6 +16,8 @@ COPY . /app
 RUN composer install --no-dev --no-scripts --no-suggest --no-interaction --prefer-dist --optimize-autoloader
 
 FROM php:7.4-fpm AS php-prod
+WORKDIR /var/www/html
+COPY . /var/www/html
 COPY --from=composer-prod /app/vendor /var/www/html
 
 FROM nginx:stable AS nginx
